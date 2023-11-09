@@ -1,0 +1,10 @@
+{
+    "id": 1,
+    "codigo": "0005",
+    "fecha": "2023-11-08",
+    "nombre_especialista": "carla maria",
+    "diagnostico": "prueba",
+    "procedimiento": "prueba",
+    "tratamiento": "ortodoncia",
+    "paciente_id": 6
+}
