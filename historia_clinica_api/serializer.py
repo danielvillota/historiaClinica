@@ -3,5 +3,5 @@ from .models import Historia
 
 class HistoriaSerializer(serializers.ModelSerializer):
     class Meta:
-        model=Historia
-        fields='__all__'
+        model = Historia
+        fields = '__all__'
