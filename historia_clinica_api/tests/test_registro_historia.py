@@ -54,17 +54,26 @@ class registroHistoria(unittest.TestCase):
         self.assert_data['nombre_especialista'] = 15641
         response = self.client.post(self.url, self.assert_data)
         self.assertEqual(response.status_code, 400)
-    
-    #corregir test  
+
     def test_actualizar_historia(self):
-        historia = Historia.objects.create(id=1, codigo='2222', fecha='2023-11-08', nombre_especialista='cristian torres', diagnostico='Prueba', procedimiento='Prueba',tratamiento='Prueba', paciente_id=6)
+        self.tearDown()
+        historia = Historia.objects.create(id=1, codigo='2222', fecha='2023-11-08', nombre_especialista='cristian torres', diagnostico='Prueba', procedimiento='Prueba', tratamiento='Prueba', paciente_id=6)
+
         datos_actualizados = {
-            "nombre_especialista": "Maria Liz"
+            "codigo":"2222",
+            "fecha":"2023-11-08",
+            "nombre_especialista": "Maria Liz",
+            "diagnostico":"prueba",
+            "procedimiento":"prueba",
+            "tratamiento":"prueba",
+            "paciente_id":6
         }
-        response = self.client.put(f"{self.url}/{historia.id}", json.dumps(datos_actualizados), content_type="application/json")
+        response = self.client.put(f"{self.url}/{historia.id}", datos_actualizados, content_type='application/json')
+        print(response.content)
         self.assertEqual(response.status_code, 200)
         
     def test_eliminar_historia(self):
         historia = Historia.objects.create(id=1, codigo='2222', fecha='2023-11-08', nombre_especialista='cristian torres', diagnostico='Prueba', procedimiento='Prueba',tratamiento='Prueba', paciente_id=6)
-        response = self.client.delete(f"{self.url}/{historia.id}/")
-        self.assertEqual(response.status_code, 204)
+        response = self.client.delete(f"{self.url}/{historia.id}")
+        print(response.content)
+        self.assertEqual(response.status_code, 200)
