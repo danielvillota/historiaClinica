@@ -1,6 +1,5 @@
 import unittest
 from ..models import Historia
-from ..serializer import HistoriaSerializer
 from django.test import Client
 import json
 import os
