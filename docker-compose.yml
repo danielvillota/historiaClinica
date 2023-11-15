@@ -10,3 +10,21 @@ services:
     volumes:
       - .:/app
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+  
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_DATABASE: historia
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ""
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_ARBITRARY: 1
+      MYSQL_ROOT_PASSWORD: ""
