@@ -86,15 +86,13 @@ WSGI_APPLICATION = 'historia_clinica.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': 'db',
+        'PORT': '5432',
         'USER': 'root',
-        'PASSWORD': '',
-        'NAME': 'historia',
-        'OPTIONS': {
-             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
+        'PASSWORD': '123',
+        'NAME': 'mydatabase',
+        
     }
 }
 

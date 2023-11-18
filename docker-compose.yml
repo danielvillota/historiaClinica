@@ -9,22 +9,21 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
-    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: python manage.py runserver 0.0.0.0:8000
   
-  mysql:
-    image: mysql:latest
-    restart: always
+  db:
+    image: postgres
     environment:
-      MYSQL_ROOT_PASSWORD: ""
-      MYSQL_DATABASE: historia
-      MYSQL_USER: root
-      MYSQL_PASSWORD: ""
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
-    restart: always
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 123
+      
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: 12345
     ports:
       - "8080:80"
-    environment:
-      PMA_ARBITRARY: 1
-      MYSQL_ROOT_PASSWORD: ""
+    depends_on:
+      - db
